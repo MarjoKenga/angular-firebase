@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" routerLink="heroes">
+            {{title}}
+          </a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <p *ngIf="user" class="navbar-text navbar-right">
+                {{ user?.auth.email }} <img src="{{user?.auth.photoURL}}" class="img-circle" />
+                <i class="fa fa-sign-out" (click)="logout()" aria-hidden="true"></i>
+            </p>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <notifications></notifications>
+    <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,51 @@
+<div class="pull-right">
+    <button class="btn btn-primary" routerLink="maps">
+      <i class="fa fa-map-marker fa-fw fa-lg" aria-hidden="true"></i>
+      Maps
+    </button>
+    <button class="btn btn-primary" routerLink="create">
+      <i class="fa fa-plus-circle fa-fw fa-lg" aria-hidden="true"></i>
+      Create
+    </button>
+</div>
+<table class="table">
+    <thead class="thead-inverse">
+        <tr>
+            <th>Name</th>
+            <th>
+                Street
+            </th>
+            <th>
+                Distance
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let hero of heroes;">
+            <td>
+                {{hero.name}}
+            </td>
+            <td>
+                {{hero?.location?.address}}
+            </td>
+            <td>
+                {{geolocationService.getDistanceFromLatLonInKm(currentLocation,hero?.location) | distance}}
+            </td>
+            <td>
+                <span class="glyphicon glyphicon-pencil" (click)="edit(hero.$key)" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-trash" (click)="delete(hero.$key)" aria-hidden="true"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="pull-right">
+    Total <span class="badge">{{allHeroes?.length}}</span>
+</div>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li [class.active]="currentPage==page" *ngFor="let page of pages">
+            <a (click)="paginate(page)">{{page}}</a>
+        </li>
+    </ul>
+</nav>
